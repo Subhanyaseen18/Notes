@@ -16,7 +16,7 @@ import {
         justifyContent: 'center',
       },
       modalstyle: {
-        height: wp(80),
+        height: wp(42),
         backgroundColor: theme.color.modalBackground,
         borderRadius: theme.borders.radius3,
         width: wp(60),

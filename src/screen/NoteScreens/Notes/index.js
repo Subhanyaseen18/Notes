@@ -1,13 +1,19 @@
-import {View, TouchableOpacity, FlatList, LogBox,StatusBar} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  LogBox,
+  StatusBar,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import Text from '../../components/CustomText';
-import {useThemeAwareObject} from '../../theme/theme';
+import Text from '../../../components/CustomText';
+import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
-import {Colours} from '../../components/Colors';
+import {Colours} from '../../../components/Colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import SnackBar from '../../components/Snackbar';
+import SnackBar from '../../../components/Snackbar';
 export default function Notes(props) {
   const [firebase, setfirebase] = useState([]);
   LogBox.ignoreLogs([
@@ -21,15 +27,16 @@ export default function Notes(props) {
   const firebasedata = () => {
     firestore()
       .collection('users')
-      .where('status', 'in', ['Urgent', 'Thinking', 'Let_stalk'])
-
+      .where('status', 'in', ['Urgent', 'Thinking', "Let's_talk"])
+      .orderBy('time', 'desc')
       .get()
       .then(querySnapshot => {
+      
         const usersArray = querySnapshot.docs.map(documentSnapshot => ({
           id: documentSnapshot.id,
           ...documentSnapshot.data(),
         }));
-        // .orderBy('timestamp', 'desc')
+      
 
         setfirebase(usersArray);
       })
@@ -51,13 +58,15 @@ export default function Notes(props) {
   }, [focus]);
   return (
     <View style={styles.Container}>
-         <StatusBar backgroundColor={Colours.softblue} barStyle="light-content" />
+      <StatusBar backgroundColor={Colours.softblue} barStyle="light-content" />
       <View style={styles.Containerheading}>
         <Text style={styles.heading}>Notes</Text>
       </View>
       <FlatList
         data={firebase}
+        keyExtractor={item => item.id}
         renderItem={({item, index}) => {
+          // console.log('item', item)
           return (
             <TouchableOpacity
               onPress={() => {
@@ -66,7 +75,7 @@ export default function Notes(props) {
               style={[
                 styles.MianContainerflat,
                 item.status == 'Urgent' && {backgroundColor: Colours.lightred},
-                item.status == 'Let_stalk' && {
+                item.status == "Let's_talk" && {
                   backgroundColor: Colours.green,
                 },
                 item.status == 'Thinking' && {

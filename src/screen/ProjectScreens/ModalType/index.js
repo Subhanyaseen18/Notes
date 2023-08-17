@@ -1,41 +1,34 @@
 import {View, TouchableOpacity, Modal, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import Text from '../components/CustomText';
+import Text from '../../../components/CustomText';
 
 import createstyles from './style';
-import {useThemeAwareObject} from '../theme/theme';
-const Modals = ({visible, onClose, ItemSelected}) => {
+import {useThemeAwareObject} from '../../../theme/theme';
+const ModalType = ({open, Close, ItemSelect}) => {
   const styles = useThemeAwareObject(createstyles);
 
   const handleprofilescreen = item => {
-    ItemSelected(item);
-    onClose();
+    ItemSelect(item);
+    Close();
   };
 
   const data = [
     {
       id: 1,
-      status: 'Thinking',
+      status: 'Job',
     },
     {
       id: 2,
-      status: 'Lets_talk',
+      status: 'Project',
     },
-    {
-      id: 3,
-      status: 'Urgent',
-    },
-    {
-      id: 4,
-      status: 'Completed',
-    },
+ 
   ];
   return (
     <View style={styles.Container}>
-      <Modal transparent={true} visible={visible} onRequestClose={onClose}>
+      <Modal transparent={true} visible={open} onRequestClose={Close}>
         <TouchableOpacity
           style={styles.modalstylebackground}
-          onPress={() => onClose()}>
+          onPress={() => Close()}>
           <View style={styles.modalstyle}>
             <FlatList
               data={data}
@@ -55,4 +48,4 @@ const Modals = ({visible, onClose, ItemSelected}) => {
     </View>
   );
 };
-export default Modals;
+export default ModalType;

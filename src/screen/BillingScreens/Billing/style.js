@@ -3,7 +3,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {Colours} from '../../components/Colors';
 const createstyles = theme => {
   const styles = StyleSheet.create({
     Container: {
@@ -13,7 +12,7 @@ const createstyles = theme => {
       height: hp(10),
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
       paddingLeft: wp(3),
@@ -26,45 +25,26 @@ const createstyles = theme => {
       fontWeight: theme.family.xlarge,
       color: theme.color.white,
     },
-    Containernotes: {
-      alignSelf: 'center',
-      width: wp(90),
 
-      borderRadius: theme.borders.radius3,
-    },
-
-    notestext: {
-      color: theme.color.inputtext,
+    headingtext: {
       fontSize: theme.size.small,
       fontWeight: theme.family.xlarge,
-      width: wp(90),
-      marginLeft: wp(3),
-    },
-    editnotetext: {
-      backgroundColor: theme.color.backgroundinput,
-      borderRadius: theme.borders.radius3,
-      borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
-      color: theme.color.inputtext,
-      fontWeight: theme.family.medium,
-      fontSize: theme.size.small,
-      paddingLeft: wp(3),
-    },
-    ContainerStatus: {
-      alignSelf: 'center',
+      marginLeft: wp(6),
       marginTop: hp(2),
-      width: wp(90),
+      color: 'black',
+      marginBottom: hp(0.5),
     },
-    ContainerStatusedit: {
-      borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
+    ContainerProject: {
       flexDirection: 'row',
       width: wp(90),
       borderRadius: theme.borders.radius3,
       alignSelf: 'center',
       alignItems: 'center',
-      height: hp(7),
+      height: hp(8),
       justifyContent: 'center',
+      backgroundColor: theme.color.modelbackscreenColor,
+      borderWidth:wp(0.3),
+      borderColor:theme.color.modelbackscreenColor,
     },
     statustext: {
       color: theme.color.inputtext,
@@ -73,34 +53,46 @@ const createstyles = theme => {
       width: wp(72),
       marginLeft: wp(3),
     },
-    headingtext: {
+    methodtext: {
+      color: theme.color.inputtext,
       fontSize: theme.size.small,
       fontWeight: theme.family.xlarge,
-      marginLeft: wp(6),
-      marginTop: hp(2),
-      color: 'black',
-      width: wp(90),
+      width: wp(85),
+      marginLeft: wp(3),
     },
-    Bariconcolor: {
-      color: theme.color.white,
+    textinput: {
+      alignSelf: 'center',
+      width: wp(87),
+
+      padding: 10,
+      color: theme.color.inputtext,
+      fontSize: theme.size.small,
+      fontWeight: theme.family.xlarge,
     },
     MaincontainerBtn: {
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-      marginTop: hp(10),
+      height: hp(10),
+      marginTop: hp(5),
     },
     containerBtn: {
       alignItems: 'center',
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.borderColor,
-      width: wp(40),
-
+      width: wp(90),
+      alignSelf: 'baseline',
       height: hp(7),
+      alignSelf: 'center',
       justifyContent: 'center',
     },
     btntext: {
       fontSize: theme.size.small,
       color: theme.color.buttonText,
+      fontWeight: theme.family.medium,
+    },
+    eror: {
+      marginLeft: wp(6),
+      fontSize: theme.size.xSmall,
+      color: theme.color.error,
+      width: wp(92),
       fontWeight: theme.family.medium,
     },
   });

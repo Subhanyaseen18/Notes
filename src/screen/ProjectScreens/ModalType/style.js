@@ -16,7 +16,7 @@ import {
         justifyContent: 'center',
       },
       modalstyle: {
-        height: wp(80),
+        height: wp(42),
         backgroundColor: theme.color.modalBackground,
         borderRadius: theme.borders.radius3,
         width: wp(60),
@@ -40,21 +40,7 @@ import {
         fontWeight: theme.family.large,
       },
   
-      Containerlogout: {
-        flex: 0.3,
-        backgroundColor: theme.color.logoutborderColor,
-        marginTop: hp(1),
-        justifyContent: 'center',
-        //    / width: wp(50),
-        alignSelf: 'center',
-        borderRadius: theme.borders.radius3,
-      },
-      headinglogout: {
-        color: theme.color.white,
-        alignSelf: 'center',
-        fontSize: theme.size.small,
-        fontWeight: theme.family.large,
-      },
+    
     });
     return styles;
   };

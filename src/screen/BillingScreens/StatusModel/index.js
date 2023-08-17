@@ -1,48 +1,41 @@
 import {View, TouchableOpacity, Modal, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import Text from '../components/CustomText';
+import Text from '../../../components/CustomText';
 
 import createstyles from './style';
-import {useThemeAwareObject} from '../theme/theme';
-const Modals = ({visible, onClose, ItemSelected}) => {
+import {useThemeAwareObject} from '../../../theme/theme';
+const StatusBilling = ({open, Close, Selectedstatus}) => {
   const styles = useThemeAwareObject(createstyles);
 
-  const handleprofilescreen = item => {
-    ItemSelected(item);
-    onClose();
+  const handlestatusscreen = item => {
+   Selectedstatus(item);
+    Close();
   };
 
   const data = [
     {
       id: 1,
-      status: 'Thinking',
+      status: 'Pending',
     },
     {
       id: 2,
-      status: 'Lets_talk',
+      status: 'Paid',
     },
-    {
-      id: 3,
-      status: 'Urgent',
-    },
-    {
-      id: 4,
-      status: 'Completed',
-    },
+  
   ];
   return (
     <View style={styles.Container}>
-      <Modal transparent={true} visible={visible} onRequestClose={onClose}>
+      <Modal transparent={true} visible={open} onRequestClose={Close}>
         <TouchableOpacity
           style={styles.modalstylebackground}
-          onPress={() => onClose()}>
+          onPress={() => Close()}>
           <View style={styles.modalstyle}>
             <FlatList
               data={data}
               renderItem={({item, index}) => {
                 return (
                   <TouchableOpacity
-                    onPress={() => handleprofilescreen(item.status)}
+                    onPress={() => handlestatusscreen(item.status)}
                     style={styles.Containerbox}>
                     <Text style={styles.headingtext}>{item.status}</Text>
                   </TouchableOpacity>
@@ -55,4 +48,4 @@ const Modals = ({visible, onClose, ItemSelected}) => {
     </View>
   );
 };
-export default Modals;
+export default StatusBilling;

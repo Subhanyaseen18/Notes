@@ -1,19 +1,19 @@
 import {View, TouchableOpacity, TextInput} from 'react-native';
 import React, {useState} from 'react';
-import Text from '../../components/CustomText';
-import {useThemeAwareObject} from '../../theme/theme';
+import Text from '../../../components/CustomText';
+import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
-import {Colours} from '../../components/Colors';
+import {Colours} from '../../../components/Colors';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
-import Modals from '../../Popup';
+import Modals from '../../../Popup';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {useDispatch} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import Icones from 'react-native-vector-icons/MaterialIcons';
-import SnackBar from '../../components/Snackbar';
+import SnackBar from '../../../components/Snackbar';
 export default function DetailNotes(props) {
   const styles = useThemeAwareObject(createstyles);
   const [editable, seteditable] = useState(false);
@@ -21,9 +21,10 @@ export default function DetailNotes(props) {
   const [status, setstatus] = useState(props.route.params.status);
 
   const handledata = values => {
+   
     {
       editable == false
-        ? props.navigation.navigate('BottomStack')
+        ?  props.navigation.goBack()
         : firestore()
             .collection('users')
             .doc(props.route.params.id)
@@ -37,17 +38,13 @@ export default function DetailNotes(props) {
 
       seteditable(false);
     }
-    {
-      status == 'Completed'
-        ? props.navigation.navigate('Complete')
-        : props.navigation.navigate('New');
-    }
+   
   };
   const handleItemSelected = item => {
     setstatus(item);
   };
   const handledelete = () => {
-    props.navigation.navigate('BottomStack');
+    props.navigation.goBack()
 
     firestore()
       .collection('users')
@@ -89,7 +86,7 @@ export default function DetailNotes(props) {
           <View style={styles.Containerheading}>
             <TouchableOpacity
               style={styles.backarrow}
-              onPress={() => props.navigation.navigate('BottomStack')}>
+              onPress={() => props.navigation.goBack()}>
               <Icon name="leftcircle" size={40} style={styles.Bariconcolor} />
             </TouchableOpacity>
             <Text style={styles.heading}>Details</Text>

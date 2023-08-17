@@ -19,7 +19,7 @@ const createstyles = theme => {
       marginBottom: hp(2),
     },
     Containercode: {
-      width: wp(80),
+      width: wp(90),
       alignSelf: 'center',
     },
     heading: {
@@ -33,6 +33,7 @@ const createstyles = theme => {
       marginTop: wp(7),
     },
     cell: {
+      color: theme.color.inputtext,
       width: wp(12),
       height: wp(12),
       lineHeight: 38,
@@ -40,6 +41,7 @@ const createstyles = theme => {
       borderWidth: 2,
       borderColor:theme.color.borderColor,
       textAlign: 'center',
+      borderRadius:150
     },
     focusCell: {
       borderColor:theme.color.input,

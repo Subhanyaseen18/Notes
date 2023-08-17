@@ -1,10 +1,10 @@
 import {View, TouchableOpacity, Modal, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import Text from '../components/CustomText';
+import Text from '../../../components/CustomText';
 
 import createstyles from './style';
-import {useThemeAwareObject} from '../theme/theme';
-const Modals = ({visible, onClose, ItemSelected}) => {
+import { useThemeAwareObject } from '../../../theme/theme';
+const ModalProjects = ({visible, onClose, ItemSelected}) => {
   const styles = useThemeAwareObject(createstyles);
 
   const handleprofilescreen = item => {
@@ -15,19 +15,23 @@ const Modals = ({visible, onClose, ItemSelected}) => {
   const data = [
     {
       id: 1,
-      status: 'Thinking',
+      status: 'Paused',
     },
     {
       id: 2,
-      status: 'Lets_talk',
+      status: 'Ongoing',
     },
     {
       id: 3,
-      status: 'Urgent',
+      status: 'Completed',
     },
     {
       id: 4,
-      status: 'Completed',
+      status: 'Maintainance',
+    },
+    {
+      id: 5,
+      status: 'Blocker by Client',
     },
   ];
   return (
@@ -55,4 +59,4 @@ const Modals = ({visible, onClose, ItemSelected}) => {
     </View>
   );
 };
-export default Modals;
+export default ModalProjects;

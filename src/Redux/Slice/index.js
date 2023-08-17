@@ -4,25 +4,15 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     user: null,
-    id:0,
-    editdata:''
+    id: 0,
   },
   reducers: {
-    Detail: (state, action) => {
-      
-        state.id = action.payload;
-      },
-    Completedata: (state, action) => {
-        
-      state.user = action.payload;
-    },
-   Editdata: (state, action) => {
-        
-      state.editdata = action.payload;
+    Id: (state, action) => {
+      state.id = action.payload;
     },
   },
 });
-export const {Completedata,Detail,Editdata} = userSlice.actions;
+export const {Id} = userSlice.actions;
 
 export const selectuser = state => state.user.user;
 
