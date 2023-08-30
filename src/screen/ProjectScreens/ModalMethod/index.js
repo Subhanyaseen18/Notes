@@ -45,6 +45,7 @@ const ModalMethod = ({visibles, onCloses, ItemSelect}) => {
               </View>
             )}
             <FlatList
+             showsVerticalScrollIndicator={false}
               data={firebase}
               renderItem={({item, index}) => {
                 return (

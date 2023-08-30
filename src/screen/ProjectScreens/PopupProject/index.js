@@ -42,6 +42,7 @@ const ModalProjects = ({visible, onClose, ItemSelected}) => {
           onPress={() => onClose()}>
           <View style={styles.modalstyle}>
             <FlatList
+             showsVerticalScrollIndicator={false}
               data={data}
               renderItem={({item, index}) => {
                 return (

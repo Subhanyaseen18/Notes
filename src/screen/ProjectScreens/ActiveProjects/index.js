@@ -40,7 +40,6 @@ export default function Active(props) {
   };
 
   const handledata = item => {
-    console.log('item.milestone', item.milestone);
     props.navigation.navigate('DetailProject', {
       id: item.id,
       clientname: item.clientname,
@@ -90,11 +89,11 @@ export default function Active(props) {
         <Text></Text>
       </View>
       <FlatList
+       showsVerticalScrollIndicator={false}
         data={firebase}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
-          // console.log('item', item)
-          return (
+return (
             <View style={styles.MianContainerflat}>
               <TouchableOpacity
                 onPress={() => {

@@ -56,6 +56,7 @@ export default function Complete(props) {
         <Text></Text>
       </View>
       <FlatList
+       showsVerticalScrollIndicator={false}
         data={firebase}
         renderItem={({item, index}) => {
           return (

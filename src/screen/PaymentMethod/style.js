@@ -80,6 +80,7 @@ const createstyles = theme => {
       height: hp(20),
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.inputbackgroundcolor,
+      marginTop: hp(1),
     },
     textinput: {
       alignSelf: 'center',

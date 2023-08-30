@@ -43,7 +43,7 @@ const createstyles = theme => {
       borderRadius: theme.borders.radius3,
       borderWidth: wp(0.3),
 
-      color: theme.color.modelbackscreenColor,
+      color: theme.color.simpletextcolor,
       fontWeight: theme.family.small,
       fontSize: theme.size.small,
       paddingLeft: wp(3),

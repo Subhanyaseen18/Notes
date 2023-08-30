@@ -50,6 +50,7 @@ const ModalProjname = ({visible, onClose, ItemSelected}) => {
           onPress={() => onClose()}>
           <View style={styles.modalstyle}>
             <FlatList
+             showsVerticalScrollIndicator={false}
               data={firebase}
               renderItem={({item, index}) => {
            

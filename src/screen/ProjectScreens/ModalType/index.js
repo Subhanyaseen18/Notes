@@ -31,6 +31,7 @@ const ModalType = ({open, Close, ItemSelect}) => {
           onPress={() => Close()}>
           <View style={styles.modalstyle}>
             <FlatList
+             showsVerticalScrollIndicator={false}
               data={data}
               renderItem={({item, index}) => {
                 return (

@@ -80,9 +80,9 @@ export default function InActive(props) {
         <Text></Text>
       </View>
       <FlatList
+       showsVerticalScrollIndicator={false}
         data={firebase}
         renderItem={({item, index}) => {
-          // console.log('item', item)
           return (
             <View style={styles.MianContainerflat}>
               <TouchableOpacity

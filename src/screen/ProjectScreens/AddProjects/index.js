@@ -60,6 +60,7 @@ export default function AddProject(props) {
           }
           setstatus('Paused');
           settype('Job');
+          setmethod('Select the payment method')
         });
     } else {
       SnackBar('Please added complete data', true, 'short');

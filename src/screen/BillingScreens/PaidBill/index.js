@@ -64,6 +64,7 @@ export default function PaidBill(props) {
         <Text></Text>
       </View>
       <FlatList
+       showsVerticalScrollIndicator={false}
         data={firebase}
         renderItem={({item, index}) => {
           return (

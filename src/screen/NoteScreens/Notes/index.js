@@ -65,10 +65,10 @@ export default function Notes(props) {
         <Text></Text>
       </View>
       <FlatList
+       showsVerticalScrollIndicator={false}
         data={firebase}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
-          // console.log('item', item)
           return (
             <TouchableOpacity
               onPress={() => {
