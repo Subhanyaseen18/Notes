@@ -10,12 +10,17 @@ const createstyles = theme => {
     },
     Containerheading: {
       height: hp(10),
+      flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
+      paddingLeft: wp(3),
+      paddingRight: wp(8),
     },
-
+    Bariconcolor: {
+      color: theme.color.white,
+    },
     heading: {
       alignSelf: 'center',
       fontSize: theme.size.xlarge,
@@ -23,28 +28,67 @@ const createstyles = theme => {
       color: theme.color.white,
     },
     MianContainerflat: {
-      flex: 1,
-      justifyContent: 'center',
-      alignSelf: 'center',
-      marginTop: hp(2),
+      flexDirection: 'row',
       width: wp(90),
-      height: wp(20),
+
+      alignSelf: 'center',
+    },
+    Containerflatlist: {
+      marginTop: hp(2),
+      width: wp(70),
+      height: wp(23),
       borderRadius: theme.borders.radius3,
+      justifyContent: 'space-evenly',
+      backgroundColor: theme.color.boxbackcolor,
     },
     Containerflat: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      width: wp(80),
-      alignSelf: 'center',
+      marginTop: hp(-5),
     },
+
     flatname: {
       color: theme.color.inputtext,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      width: wp(85),
-      paddingBottom: hp(1.5),
-      paddingTop: hp(1.5),
+      fontWeight: theme.family.medium,
+      maxWidth: wp(37),
+      marginLeft: wp(5),
+      marginTop: hp(1),
+    },
+
+    flatprojectname: {
+      color: theme.color.inputtext,
+      fontSize: theme.size.small,
+      fontWeight: theme.family.small,
+      marginTop: hp(0.1),
+    },
+    ContainerDetail: {
+      justifyContent: 'center',
+      alignSelf: 'center',
+      marginTop: hp(2),
+      width: wp(27),
+      height: wp(20),
+      borderRadius: theme.borders.radius3,
+    },
+    flatDetail: {
+      color: theme.color.borderColor,
+      fontSize: theme.size.xSmall,
+      fontWeight: theme.family.small,
+      alignSelf: 'center',
+      textDecorationLine: 'underline',
+    },
+    ContainerStatus: {
+      marginRight: wp(2),
+    },
+    Statustext: {
+      alignSelf: 'flex-end',
+   borderRadius: theme.borders.radius3,
+      padding: 7,
+      fontSize: theme.size.xSmall,
+    },
+    Datetext: {
+      alignSelf: 'flex-end',
+      fontSize: theme.size.xSmall,
+      marginRight: wp(2),
+      color: theme.color.datetextcolor,
     },
   });
   return styles;

@@ -40,7 +40,7 @@ export default function Login(props) {
         if (usersArray[0].password == value) {
           props.navigation.navigate('MyDrawer');
         } else {
-          SnackBar('Enter correct pasword', true, 'short');
+          SnackBar('Incorrect pasword', true, 'short');
         }
       });
   };

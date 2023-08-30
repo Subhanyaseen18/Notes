@@ -4,7 +4,6 @@ import Text from '../../../components/CustomText';
 import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
 import {Colours} from '../../../components/Colors';
-import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ModalProjects from '../PopupProject';
 import {Formik} from 'formik';
@@ -13,14 +12,17 @@ import firestore from '@react-native-firebase/firestore';
 import SnackBar from '../../../components/Snackbar';
 import DatePicker from 'react-native-date-picker';
 import ModalType from '../ModalType';
+import ModalMethod from '../ModalMethod';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function AddProject(props) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [Datepikr, setDatepikr] = useState(false);
   const [status, setstatus] = useState('Paused');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [type, settype] = useState('Job');
   const [modaltype, setmodaltype] = useState(false);
+  const [modalmethod, setmodalmethod] = useState(false);
+  const [method, setmethod] = useState('Select the payment method');
   const styles = useThemeAwareObject(createstyles);
   const handleItemSelected = item => {
     setstatus(item);
@@ -28,34 +30,40 @@ export default function AddProject(props) {
   const handleItemtype = item => {
     settype(item);
   };
+  const handlemethodSelected = item => {
+    setmethod(item);
+  };
   const handledata = values => {
     const currentTimestamp = firestore.Timestamp.fromDate(date);
 
-    {
-      status == 'Completed' || status == 'Paused'
-        ? props.navigation.navigate('InActive')
-        : props.navigation.navigate('Active');
+    if (method !== 'Select the payment method') {
+      firestore()
+        .collection('projects')
+        .add({
+          clientname: values.clientname,
+          clienttime: values.clientname,
+          country: values.country,
+          data: currentTimestamp,
+          notes: values.notes,
+          projectname: values.projectname,
+          status: status,
+          submitby: values.by,
+          type: type,
+          paymentmethod: method,
+        })
+        .then(() => {
+          SnackBar('Notes added!', true, 'short');
+          {
+            status == 'Completed' || status == 'Paused'
+              ? props.navigation.navigate('InActive')
+              : props.navigation.navigate('Active');
+          }
+          setstatus('Paused');
+          settype('Job');
+        });
+    } else {
+      SnackBar('Please added complete data', true, 'short');
     }
-
-    firestore()
-      .collection('projects')
-      .add({
-        clientname: values.clientname,
-        clienttime: values.clientname,
-        country: values.country,
-        data: currentTimestamp,
-        notes: values.notes,
-        projectname: values.projectname,
-        status: status,
-        submitby: values.by,
-        type: type,
-        paymentmethod: values.payment,
-      })
-      .then(() => {
-        SnackBar('Notes added!', true, 'short');
-      });
-    setstatus('Paused');
-    settype('Job');
   };
   const Edit = yup.object().shape({
     projectname: yup.string().required('Please enter projectname'),
@@ -65,7 +73,6 @@ export default function AddProject(props) {
 
     notes: yup.string().required('Please enter notes'),
     by: yup.string().required('Please enter your name'),
-    payment: yup.string().required('Please enter payment method'),
   });
 
   return (
@@ -77,7 +84,6 @@ export default function AddProject(props) {
         country: '',
         by: '',
         notes: '',
-        payment: '',
       }}
       validateOnMount={true}
       onSubmit={(values, {resetForm}) => {
@@ -97,7 +103,14 @@ export default function AddProject(props) {
       }) => (
         <View style={styles.Container}>
           <View style={styles.Containerheading}>
+            <TouchableOpacity
+              style={styles.backarrow}
+              onPress={() => props.navigation.openDrawer()}>
+              <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+            </TouchableOpacity>
             <Text style={styles.heading}>Add Projects</Text>
+
+            <Text></Text>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.Containerheadingname}>
@@ -106,7 +119,7 @@ export default function AddProject(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{status}</Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon name="expand-more" size={40} style={styles.icon}/>
               </TouchableOpacity>
             </View>
 
@@ -150,7 +163,6 @@ export default function AddProject(props) {
                 },
               ]}>
               <TextInput
-                textAlignVertical="top"
                 onChangeText={handleChange('clientname')}
                 onBlur={handleBlur('clientname')}
                 value={values.clientname}
@@ -165,9 +177,9 @@ export default function AddProject(props) {
               <Text style={styles.headingtext}>Start Date:</Text>
             </View>
             <View style={styles.ContainerDate}>
-              <Text style={styles.textinput}> {date.toDateString()}</Text>
+              <Text style={styles.Datetext}> {date.toDateString()}</Text>
               <TouchableOpacity onPress={() => setOpen(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon name="expand-more" size={40} style={styles.icon}/>
               </TouchableOpacity>
             </View>
 
@@ -186,7 +198,6 @@ export default function AddProject(props) {
                 },
               ]}>
               <TextInput
-                textAlignVertical="top"
                 onChangeText={handleChange('clienttime')}
                 onBlur={handleBlur('clienttime')}
                 value={values.clienttime}
@@ -212,7 +223,6 @@ export default function AddProject(props) {
                 },
               ]}>
               <TextInput
-                textAlignVertical="top"
                 onChangeText={handleChange('country')}
                 onBlur={handleBlur('country')}
                 value={values.country}
@@ -230,7 +240,7 @@ export default function AddProject(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{type}</Text>
               <TouchableOpacity onPress={() => setmodaltype(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon name="expand-more" size={40} style={styles.icon}/>
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -246,7 +256,6 @@ export default function AddProject(props) {
                 },
               ]}>
               <TextInput
-                textAlignVertical="top"
                 onChangeText={handleChange('notes')}
                 onBlur={handleBlur('notes')}
                 value={values.notes}
@@ -270,7 +279,6 @@ export default function AddProject(props) {
                 },
               ]}>
               <TextInput
-                textAlignVertical="top"
                 onChangeText={handleChange('by')}
                 onBlur={handleBlur('by')}
                 value={values.by}
@@ -284,35 +292,14 @@ export default function AddProject(props) {
             <View style={styles.Containerheadingname}>
               <Text style={styles.headingtext}>Payment Method:</Text>
             </View>
-            <View
-              style={[
-                styles.Containertextinput,
-
-                {
-                  borderColor:
-                    errors.payment && touched.payment
-                      ? Colours.red
-                      : Colours.sky,
-                },
-              ]}>
-              <TextInput
-                textAlignVertical="top"
-                onChangeText={handleChange('payment')}
-                onBlur={handleBlur('payment')}
-                value={values.payment}
-                multiline={true}
-                style={styles.textinput}
-                placeholder="Enter your payment method"></TextInput>
-            </View>
-            {errors.payment && touched.payment && (
-              <Text style={styles.eror}>{errors.payment}</Text>
-            )}
-            <View style={styles.MaincontainerBtn}>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <View style={styles.containerBtn}>
-                  <Text style={styles.btntext}>status</Text>
-                </View>
+            <View style={styles.ContainerStatusedit}>
+              <Text style={styles.notestext}>{method}</Text>
+              <TouchableOpacity onPress={() => setmodalmethod(true)}>
+                <Icon name="expand-more" size={40} style={styles.icon}/>
               </TouchableOpacity>
+            </View>
+            <View style={styles.MaincontainerBtn}>
+             
               <TouchableOpacity
                 onPress={() => {
                   handleSubmit();
@@ -331,6 +318,11 @@ export default function AddProject(props) {
               open={modaltype}
               ItemSelect={handleItemtype}
               Close={() => setmodaltype(false)}
+            />
+            <ModalMethod
+              visibles={modalmethod}
+              ItemSelect={handlemethodSelected}
+              onCloses={() => setmodalmethod(false)}
             />
           </ScrollView>
           <DatePicker

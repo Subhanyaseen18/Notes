@@ -1,3 +1,4 @@
+import {View, TouchableOpacity} from 'react-native';
 import AddProject from '../screen/ProjectScreens/AddProjects';
 import Active from '../screen/ProjectScreens/ActiveProjects';
 import InActive from '../screen/ProjectScreens/InActiveProjects';
@@ -8,8 +9,11 @@ import { Colours } from '../components/Colors';
 import PendingBill from '../screen/BillingScreens/PendingBill';
 import Billig from '../screen/BillingScreens/Billing';
 import PaidBill from '../screen/BillingScreens/PaidBill';
+import createstyles from './style';
+import {useThemeAwareObject} from '../theme/theme';
 const Tab = createBottomTabNavigator();
 export default BillingBottomStack = () => {
+  const styles = useThemeAwareObject(createstyles);
     return (
       <Tab.Navigator
         screenOptions={({route}) => ({
@@ -34,20 +38,25 @@ export default BillingBottomStack = () => {
           component={PendingBill}
         />
         <Tab.Screen
-          options={{
-            tabBarIcon: ({focused}) => (
-              <Icons
-                name="circle-with-plus"
-                size={30}
-                color={focused ? Colours.softblue : Colours.softblack}
-              />
-            ),
+           options={{
+            tabBarLabel: '',
+            tabBarIcon: ({focused}) => {
+              return (
+                <Icons
+                  style={styles.ContainerAdd}
+                  name="circle-with-plus"
+                  size={60}
+                  color={focused ? Colours.softblue : Colours.softblack}
+                />
+              );
+            },
           }}
           name="."
           component={Billig}
         />
         <Tab.Screen
           options={{
+          
             tabBarIcon: ({focused}) => (
               <ActiveIcon
                 name="timer-sand-complete"

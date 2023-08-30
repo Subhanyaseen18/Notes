@@ -4,7 +4,6 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-
 const createstyles = theme => {
   const styles = StyleSheet.create({
     Container: {
@@ -14,13 +13,18 @@ const createstyles = theme => {
       height: hp(10),
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
       paddingLeft: wp(3),
-      paddingRight: wp(3),
+      paddingRight: wp(8),
     },
-
+    Bariconcolor: {
+      color: theme.color.white,
+    },
+    icon: {
+      color: theme.color.modaliconColor,
+    },
     heading: {
       alignSelf: 'center',
       fontSize: theme.size.xlarge,
@@ -33,14 +37,14 @@ const createstyles = theme => {
       width: wp(90),
       height: hp(20),
       borderRadius: theme.borders.radius3,
-      backgroundColor: theme.color.modelbackscreenColor,
+      backgroundColor: theme.color.inputbackgroundcolor,
     },
 
     notestext: {
-      color: theme.color.inputtext,
+      color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      width: wp(72),
+      fontWeight: theme.family.medium,
+      width: wp(74),
       marginLeft: wp(3),
     },
     Bariconcolor: {
@@ -56,7 +60,7 @@ const createstyles = theme => {
       alignItems: 'center',
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.borderColor,
-      width: wp(40),
+      width: wp(90),
       alignSelf: 'center',
       height: hp(7),
       justifyContent: 'center',
@@ -73,23 +77,23 @@ const createstyles = theme => {
 
       height: hp(40),
       borderRadius: theme.borders.radius3,
-      backgroundColor: theme.color.modelbackscreenColor,
+      backgroundColor: theme.color.inputbackgroundcolor,
     },
     textinput: {
       alignSelf: 'center',
       width: wp(86),
-        height: hp(40),
-        padding:10,
-      color:theme.color.inputtext,
+      height: hp(40),
+      padding: 10,
+      color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
+      fontWeight: theme.family.medium,
     },
     headingtext: {
       fontSize: theme.size.small,
       fontWeight: theme.family.xlarge,
       marginLeft: wp(6),
       marginTop: hp(2),
-      color: 'black',
+      color: theme.color.modaliconColor,
     },
     ContainerStatus: {
       alignSelf: 'center',
@@ -104,7 +108,7 @@ const createstyles = theme => {
       alignItems: 'center',
       height: hp(7),
       justifyContent: 'center',
-      backgroundColor: theme.color.modelbackscreenColor,
+      backgroundColor: theme.color.inputbackgroundcolor,
     },
     eror: {
       marginLeft: wp(6),

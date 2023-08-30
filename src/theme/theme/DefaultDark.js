@@ -22,6 +22,9 @@ const DEFAULT_DARK_COLOR_THEME = {
   modaliconColor: Colours.black,
   welbackColor: Colours.grey,
   viewbtnColor: Colours.blue,
+  inputbackgroundcolor:Colours.softblack,
+  simpletextcolor:Colours.fadeBlack,
+  boxbackcolor:Colours.sky,
 };
 
 const FONT_SET = {

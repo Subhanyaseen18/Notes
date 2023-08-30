@@ -1,5 +1,5 @@
-import {View} from 'react-native';
-import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -16,16 +16,17 @@ import {Colours} from '../components/Colors';
 import ProjectBottomStack from './Projectnavigation';
 import PaymentMethod from '../screen/PaymentMethod';
 import DetailProject from '../screen/ProjectScreens/ProjectDetail';
-import Billig from '../screen/BillingScreens/Billing';
 import Billnavigation from './Billnavigation';
 import DetailBilling from '../screen/BillingScreens/DetailBilling';
-
+import AllDetail from '../screen/ProjectScreens/AllDetail';
+import createstyles from './style';
+import {useThemeAwareObject} from '../theme/theme';
 const Tab = createBottomTabNavigator();
 const NoteBottomStack = () => {
+  const styles = useThemeAwareObject(createstyles);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarVisible: route.name !== '.',
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: Colours.softblue,
@@ -46,18 +47,23 @@ const NoteBottomStack = () => {
         component={Notes}
       />
       <Tab.Screen
-        options={{
-          tabBarIcon: ({focused}) => (
-            <Icons
-              name="circle-with-plus"
-              size={30}
-              color={focused ? Colours.softblue : Colours.softblack}
-            />
-          ),
-        }}
-        name="."
+        name="AddNotes"
         component={AddNotes}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icons
+                style={styles.ContainerAdd}
+                name="circle-with-plus"
+                size={60}
+                color={focused ? Colours.softblue : Colours.softblack}
+              />
+            );
+          },
+        }}
       />
+
       <Tab.Screen
         options={{
           tabBarIcon: ({focused}) => (
@@ -79,9 +85,7 @@ const Stack = createStackNavigator();
 const MainStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        // initialRouteName="MyDrawer"
-        screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="MyDrawer" component={MyDrawer}></Stack.Screen>
         <Stack.Screen name="DetailNotes" component={DetailNotes}></Stack.Screen>
@@ -91,6 +95,8 @@ const MainStack = () => {
         <Stack.Screen
           name="DetailProject"
           component={DetailProject}></Stack.Screen>
+
+        <Stack.Screen name="AllDetail" component={AllDetail}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -101,15 +107,15 @@ const MyDrawer = () => {
     <Drawer.Navigator
       initialRouteName="ProjectBottomStack"
       screenOptions={{
-        headerShown:false,
+        headerShown: false,
         drawerActiveTintColor: Colours.softblue,
-        drawerInactiveTintColor: Colours.softblack,
-        drawerItemStyle: {marginVertical: 15},
-        drawerLabelStyle: {fontSize: 18},
+        drawerInactiveTintColor: Colours.black,
+        drawerItemStyle: {marginVertical: 8},
+        drawerLabelStyle: {fontSize: 16},
       }}>
-      <Drawer.Screen name="Note" component={NoteBottomStack} />
-      <Drawer.Screen name="Project" component={ProjectBottomStack} />
-      {/* <Drawer.Screen name="Payment" component={PaymentMethod} /> */}
+      <Drawer.Screen name="Notes" component={NoteBottomStack} />
+      <Drawer.Screen name="Projects" component={ProjectBottomStack} />
+      <Drawer.Screen name="Payment" component={PaymentMethod} />
       <Drawer.Screen name="Billing" component={Billnavigation} />
     </Drawer.Navigator>
   );

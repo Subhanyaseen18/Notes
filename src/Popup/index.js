@@ -19,7 +19,7 @@ const Modals = ({visible, onClose, ItemSelected}) => {
     },
     {
       id: 2,
-      status: 'Lets_talk',
+      status: "Let's_talk",
     },
     {
       id: 3,

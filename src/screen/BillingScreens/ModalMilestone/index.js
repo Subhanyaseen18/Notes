@@ -5,14 +5,15 @@ import firestore from '@react-native-firebase/firestore';
 import createstyles from './style';
 import {useThemeAwareObject} from '../../../theme/theme';
 import {useIsFocused} from '@react-navigation/native';
-import ModalProjname from '../../BillingScreens/ModalProject';
+import ModalProjname from '../ModalProject';
 import {useSelector} from 'react-redux';
 
 const ModalMile = ({visibles, onCloses, ItemSelect}) => {
   const styles = useThemeAwareObject(createstyles);
-  const [firebase, setfirebase] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
   const {id} = useSelector(state => state.user);
+  const [firebase, setfirebase] = useState([]);
+
+ 
 
   const focus = useIsFocused();
   const handleprofilescreen = item => {
@@ -35,6 +36,7 @@ const ModalMile = ({visibles, onCloses, ItemSelect}) => {
   useEffect(() => {
     firebasedata();
   }, [id]);
+
   return (
     <View style={styles.Container}>
       <Modal transparent={true} visible={visibles} onRequestClose={onCloses}>
@@ -52,9 +54,9 @@ const ModalMile = ({visibles, onCloses, ItemSelect}) => {
               renderItem={({item, index}) => {
                 return (
                   <TouchableOpacity
-                    onPress={() => handleprofilescreen(item.value)}
+                    onPress={() => handleprofilescreen(item.milestone)}
                     style={styles.Containerbox}>
-                    <Text style={styles.headingtext}>{item.value}</Text>
+                    <Text style={styles.headingtext}>{item.milestone}</Text>
                   </TouchableOpacity>
                 );
               }}

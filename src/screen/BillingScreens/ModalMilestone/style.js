@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {StyleSheet} from 'react-native';
-import {Colours} from '../components/Colors';
+
 const createstyles = theme => {
   const styles = StyleSheet.create({
     Container: {
@@ -12,11 +12,10 @@ const createstyles = theme => {
 
     modalstylebackground: {
       flex: 1,
-      backgroundColor: theme.color.modelbackColor,
+      backgroundColor: theme.color.modelbackscreenColor,
       justifyContent: 'center',
     },
     modalstyle: {
-    //   flex: 0.8,
       height: wp(100),
       backgroundColor: theme.color.modalBackground,
       borderRadius: theme.borders.radius3,
@@ -43,7 +42,6 @@ const createstyles = theme => {
     ContainerNot: {
       justifyContent: 'center',
       alignItems: 'center',
-     
     },
     Notques: {
       color: theme.color.borderColor,
@@ -51,7 +49,7 @@ const createstyles = theme => {
       fontWeight: theme.family.medium,
       alignSelf: 'center',
       justifyContent: 'center',
-      marginTop:hp(35)
+      marginTop: hp(35),
     },
   });
   return styles;

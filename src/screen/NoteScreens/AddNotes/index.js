@@ -4,13 +4,13 @@ import Text from '../../../components/CustomText';
 import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
 import {Colours} from '../../../components/Colors';
-import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Modals from '../../../Popup';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import firestore from '@react-native-firebase/firestore';
 import SnackBar from '../../../components/Snackbar';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function AddNotes(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [val, setval] = useState('');
@@ -46,9 +46,9 @@ export default function AddNotes(props) {
     <Formik
       initialValues={{editnotes: ''}}
       validateOnMount={true}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values, {resetForm}) => {
         handledata(values);
-        resetForm({values:''});
+        resetForm({values: ''});
       }}
       validationSchema={Edit}>
       {({
@@ -63,7 +63,14 @@ export default function AddNotes(props) {
       }) => (
         <View style={styles.Container}>
           <View style={styles.Containerheading}>
+            <TouchableOpacity
+              style={styles.backarrow}
+              onPress={() => props.navigation.openDrawer()}>
+              <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+            </TouchableOpacity>
             <Text style={styles.heading}>Add Notes</Text>
+
+            <Text></Text>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.Containerheadingname}>
@@ -72,7 +79,7 @@ export default function AddNotes(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{status}</Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon style={styles.icon} name="expand-more" size={40} />
               </TouchableOpacity>
             </View>
 
@@ -88,7 +95,7 @@ export default function AddNotes(props) {
                   borderColor:
                     errors.editnotes && touched.editnotes
                       ? Colours.red
-                      : Colours.sky, 
+                      : Colours.sky,
                 },
               ]}>
               <TextInput
@@ -104,16 +111,10 @@ export default function AddNotes(props) {
               <Text style={styles.eror}>{errors.editnotes}</Text>
             )}
             <View style={styles.MaincontainerBtn}>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <View style={styles.containerBtn}>
-                  <Text style={styles.btntext}>status</Text>
-                </View>
-              </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
                   handleSubmit();
                 }}
-                disabled={status === ''}
                 style={styles.containerBtn}>
                 <Text style={styles.btntext}>Done</Text>
               </TouchableOpacity>

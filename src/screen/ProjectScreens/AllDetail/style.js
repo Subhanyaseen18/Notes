@@ -16,66 +16,45 @@ const createstyles = theme => {
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
       paddingLeft: wp(3),
-      paddingRight: wp(8),
+      paddingRight: wp(10),
     },
-    Bariconcolor: {
-      color: theme.color.white,
-    },
-    icon: {
-      color: theme.color.modaliconColor,
-    },
-
     heading: {
       alignSelf: 'center',
       fontSize: theme.size.xlarge,
       fontWeight: theme.family.xlarge,
       color: theme.color.white,
     },
-
-    headingtext: {
-      fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      marginLeft: wp(6),
-      marginTop: hp(2),
-      color: theme.color.modaliconColor,
-      marginBottom: hp(0.5),
-    },
-    ContainerProject: {
-      flexDirection: 'row',
-      width: wp(90),
-      borderRadius: theme.borders.radius3,
-      alignSelf: 'center',
-      alignItems: 'center',
-      height: hp(7),
-      justifyContent: 'center',
-      backgroundColor: theme.color.inputbackgroundcolor,
-      borderWidth: wp(0.3),
-      borderColor: theme.color.inputbackgroundcolor,
-    },
     statustext: {
       color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      width: wp(74),
+      fontWeight: theme.family.small,
+      width: wp(72),
       marginLeft: wp(3),
+      marginTop: hp(1),
     },
-    methodtext: {
+    Containerheadingname: {
+      marginLeft: wp(6),
+      marginTop: hp(2),
+    },
+    inputtext: {
       color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      width: wp(85),
+      fontWeight: theme.family.small,
+      width: wp(25),
       marginLeft: wp(3),
+      marginTop: hp(-1),
     },
-    textinput: {
-      alignSelf: 'center',
-      width: wp(87),
-
-      padding: 10,
-      color: theme.color.simpletextcolor,
+    headingtext: {
       fontSize: theme.size.small,
       fontWeight: theme.family.xlarge,
+      color: theme.color.modaliconColor,
+    },
+    Bariconcolor: {
+      color: theme.color.white,
     },
     MaincontainerBtn: {
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
       height: hp(10),
       marginTop: hp(5),
     },
@@ -84,9 +63,7 @@ const createstyles = theme => {
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.borderColor,
       width: wp(90),
-      alignSelf: 'baseline',
       height: hp(7),
-      alignSelf: 'center',
       justifyContent: 'center',
     },
     btntext: {
@@ -94,12 +71,16 @@ const createstyles = theme => {
       color: theme.color.buttonText,
       fontWeight: theme.family.medium,
     },
-    eror: {
-      marginLeft: wp(6),
-      fontSize: theme.size.xSmall,
+    ContainerDate: {
+      marginTop: hp(0.8),
+    },
+    mileemptytext: {
       color: theme.color.error,
-      width: wp(92),
-      fontWeight: theme.family.medium,
+      fontSize: theme.size.small,
+      fontWeight: theme.family.small,
+      width: wp(72),
+      marginLeft: wp(3),
+      marginTop: hp(1),
     },
   });
   return styles;

@@ -16,7 +16,9 @@ export const Colours = {
   sky:'#E0E0E0',
   lightred:'#FAA0A0',
   softblue:'#02BEFD',
-  softblack:'#C8CCD3'
+  softblack:'#C8CCD3',
+  fadeBlack:'#5A5B5B',
+  fadegrey:'#777766'
 };
 export const fontsSize = {
   extrasmall:wp(3),

@@ -4,17 +4,14 @@ import Text from '../../components/CustomText';
 import {useThemeAwareObject} from '../../theme/theme';
 import createstyles from './style';
 import {Colours} from '../../components/Colors';
-import {useSelector, useDispatch} from 'react-redux';
-import {Detail} from '../../Redux/Slice';
 import firestore from '@react-native-firebase/firestore';
 import {useIsFocused} from '@react-navigation/native';
 import SnackBar from '../../components/Snackbar';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function PaymentMethod(props) {
   const styles = useThemeAwareObject(createstyles);
-  const {user} = useSelector(state => state.user);
-  const [firebase, setfirebase] = useState([]);
 
   const focus = useIsFocused();
 
@@ -22,7 +19,7 @@ export default function PaymentMethod(props) {
     firestore()
       .collection('payment')
       .add({
-        paymentfrom: values.addmethod,
+        method: values.addmethod,
       })
       .then(() => {
         SnackBar('Payment added!', true, 'short');
@@ -31,14 +28,15 @@ export default function PaymentMethod(props) {
   };
 
   const Edit = yup.object().shape({
-    addmethod: yup.string().required('Please enter addmethod'),
+    addmethod: yup.string().required('Please enter payment method'),
   });
   return (
     <Formik
       initialValues={{addmethod: ''}}
       validateOnMount={true}
-      onSubmit={values => {
+      onSubmit={(values, {resetForm}) => {
         handledata(values);
+        resetForm({values: ''});
       }}
       validationSchema={Edit}>
       {({
@@ -52,15 +50,22 @@ export default function PaymentMethod(props) {
         errors,
       }) => (
         <View style={styles.Container}>
-          <View style={styles.Containerheading}>
-            <Text style={styles.heading}>Payment Method</Text>
-          </View>
+         <View style={styles.Containerheading}>
+        <TouchableOpacity
+          style={styles.backarrow}
+          onPress={() => props.navigation.openDrawer()}>
+          <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+        </TouchableOpacity>
+        <Text style={styles.heading}>Payment Method</Text>
+
+        <Text></Text>
+      </View>
           <View style={styles.Containerheadingname}>
             <Text style={styles.headingtext}>Add Method:</Text>
           </View>
           <View
             style={[
-              styles.Containeredit,
+              styles. Containertextinput,
 
               {
                 borderColor:

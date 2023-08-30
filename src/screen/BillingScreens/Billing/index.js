@@ -15,7 +15,8 @@ import firestore from '@react-native-firebase/firestore';
 import SnackBar from '../../../components/Snackbar';
 import {Dispatch} from '@reduxjs/toolkit';
 import {Id} from '../../../Redux/Slice';
-import ModalMile from '../../ProjectScreens/ModalMilestone';
+import ModalMile from '../ModalMilestone';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function Billig(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modelstatus, setmodelstatus] = useState(false);
@@ -92,7 +93,14 @@ export default function Billig(props) {
       }) => (
         <View style={styles.Container}>
           <View style={styles.Containerheading}>
-            <Text style={styles.heading}>Billing</Text>
+            <TouchableOpacity
+              style={styles.backarrow}
+              onPress={() => props.navigation.openDrawer()}>
+              <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+            </TouchableOpacity>
+            <Text style={styles.heading}>Add Bill</Text>
+
+            <Text></Text>
           </View>
 
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -105,7 +113,7 @@ export default function Billig(props) {
                 value={project}
                 editable={false}></TextInput>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon  style={styles.icon} name="expand-more" size={40} />
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -125,7 +133,7 @@ export default function Billig(props) {
             <View style={styles.ContainerProject}>
               <Text style={styles.statustext}> {date.toDateString()}</Text>
               <TouchableOpacity onPress={() => setOpen(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon  style={styles.icon} name="expand-more" size={40} />
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -137,7 +145,7 @@ export default function Billig(props) {
                 value={status}
                 editable={false}></TextInput>
               <TouchableOpacity onPress={() => setmodelstatus(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon  style={styles.icon} name="expand-more" size={40} />
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -146,7 +154,7 @@ export default function Billig(props) {
             <View style={styles.ContainerProject}>
               <Text style={styles.statustext}>{milestones}</Text>
               <TouchableOpacity onPress={() => setmodalmile(true)}>
-                <Icon name="expand-more" size={50} />
+                <Icon  style={styles.icon} name="expand-more" size={40} />
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>

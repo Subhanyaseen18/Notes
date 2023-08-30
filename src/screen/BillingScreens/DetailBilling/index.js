@@ -7,20 +7,17 @@ import {Colours} from '../../../components/Colors';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Ico from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome';
-import {useSelector} from 'react-redux';
-import ModalProjects from '../../ProjectScreens/PopupProject';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {useDispatch} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import Icones from 'react-native-vector-icons/MaterialIcons';
 import SnackBar from '../../../components/Snackbar';
 import DatePicker from 'react-native-date-picker';
 import ModalProjname from '../ModalProject';
-import ModalMile from '../../ProjectScreens/ModalMilestone';
+import ModalMile from '../ModalMilestone';
 import StatusBilling from '../StatusModel';
+import DelModal from '../../../DelModal';
 export default function DetailBilling(props) {
-  // console.log('props.route.params', props.route.params.amount);
   const styles = useThemeAwareObject(createstyles);
   const [editable, seteditable] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -33,6 +30,7 @@ export default function DetailBilling(props) {
   const [modalmile, setmodalmile] = useState(false);
   const [modelstatus, setmodelstatus] = useState(false);
   const [milestones, setmilestones] = useState('Select the milestone');
+  const [DEldone, setDEldone] = useState(false)
   const handlemileSelected = item => {
     setmilestone(item);
   };
@@ -69,7 +67,7 @@ export default function DetailBilling(props) {
 
   const handledelete = () => {
     props.navigation.goBack();
-
+    setDEldone(false)
     firestore()
       .collection('billing')
       .doc(props.route.params.id)
@@ -107,12 +105,12 @@ export default function DetailBilling(props) {
             <TouchableOpacity
               style={styles.backarrow}
               onPress={() => props.navigation.goBack()}>
-              <Icon name="leftcircle" size={40} style={styles.Bariconcolor} />
+              <Icon name="leftcircle" size={35} style={styles.Bariconcolor} />
             </TouchableOpacity>
             <Text style={styles.heading}>Billing Details</Text>
             {editable == false ? (
               <TouchableOpacity onPress={() => seteditable(true)}>
-                <Icons name="edit" size={40} style={styles.Bariconcolor} />
+                <Icons name="edit" size={35} style={styles.Bariconcolor} />
               </TouchableOpacity>
             ) : (
               <Text> </Text>
@@ -130,7 +128,9 @@ export default function DetailBilling(props) {
               }>
               <Text style={styles.statustext}>{project}</Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
-                {editable == true && <Icones name="expand-more" size={50} />}
+                {editable == true && (
+                  <Icones style={styles.icon} name="expand-more" size={40} />
+                )}
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -143,9 +143,6 @@ export default function DetailBilling(props) {
                   : styles.ContainerStatusedit
               }>
               <Text style={styles.statustext}>{method}</Text>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
-                {editable == true && <Icones name="expand-more" size={50} />}
-              </TouchableOpacity>
             </View>
 
             <View style={styles.Containerheadingname}>
@@ -160,7 +157,7 @@ export default function DetailBilling(props) {
               <Text style={styles.statustext}>{date.toDateString()} </Text>
               {editable == true && (
                 <TouchableOpacity onPress={() => setOpen(true)}>
-                  <Ico name="expand-more" size={50} />
+                  <Ico name="expand-more" size={40} style={styles.icon} />
                 </TouchableOpacity>
               )}
             </View>
@@ -176,7 +173,9 @@ export default function DetailBilling(props) {
               }>
               <Text style={styles.statustext}>{status}</Text>
               <TouchableOpacity onPress={() => setmodelstatus(true)}>
-                {editable == true && <Icones name="expand-more" size={50} />}
+                {editable == true && (
+                  <Icones style={styles.icon} name="expand-more" size={40} />
+                )}
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -190,7 +189,9 @@ export default function DetailBilling(props) {
               }>
               <Text style={styles.statustext}>{milestone}</Text>
               <TouchableOpacity onPress={() => setmodalmile(true)}>
-                {editable == true && <Icones name="expand-more" size={50} />}
+                {editable == true && (
+                  <Icones style={styles.icon} name="expand-more" size={40} />
+                )}
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -224,21 +225,17 @@ export default function DetailBilling(props) {
             )}
 
             <View style={styles.MaincontainerBtn}>
-              {editable == true ? (
-                <TouchableOpacity onPress={() => setmodelstatus(true)}>
-                  <View style={styles.containerBtn}>
-                    <Text style={styles.btntext}>status</Text>
-                  </View>
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity onPress={() => handledelete()}>
-                  <View style={styles.containerBtn}>
+              {editable == false && (
+                <TouchableOpacity onPress={() => setDEldone(true)}>
+                  <View style={styles.containerBtnDel}>
                     <Text style={styles.btntext}>Delete</Text>
                   </View>
                 </TouchableOpacity>
               )}
               <TouchableOpacity
-                style={styles.containerBtn}
+               style={[
+                editable == false ? styles.containerBtn : styles.containerBtnEdit,
+              ]}
                 onPress={() => handleSubmit()}>
                 <Text style={styles.btntext}>Done</Text>
               </TouchableOpacity>
@@ -258,6 +255,12 @@ export default function DetailBilling(props) {
               Selectedstatus={handleSelected}
               Close={() => setmodelstatus(false)}
             />
+            <DelModal
+             visible={DEldone}
+             ItemSelected={handledelete}
+             onClose={() => setDEldone(false)}
+            />
+
             <DatePicker
               modal
               open={open}

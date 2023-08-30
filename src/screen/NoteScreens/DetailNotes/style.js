@@ -3,7 +3,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {Colours} from '../../../components/Colors';
+
 const createstyles = theme => {
   const styles = StyleSheet.create({
     Container: {
@@ -16,8 +16,8 @@ const createstyles = theme => {
       justifyContent: 'space-between',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
-      paddingLeft: wp(3),
-      paddingRight: wp(3),
+      paddingLeft: wp(5),
+      paddingRight: wp(5),
     },
 
     heading: {
@@ -29,23 +29,21 @@ const createstyles = theme => {
     Containernotes: {
       alignSelf: 'center',
       width: wp(90),
-
       borderRadius: theme.borders.radius3,
     },
 
     notestext: {
-      color: theme.color.inputtext,
+      color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
       fontWeight: theme.family.small,
       width: wp(90),
       marginLeft: wp(3),
     },
     editnotetext: {
-      backgroundColor: theme.color.backgroundinput,
       borderRadius: theme.borders.radius3,
       borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
-      color: theme.color.inputtext,
+
+      color: theme.color.modelbackscreenColor,
       fontWeight: theme.family.small,
       fontSize: theme.size.small,
       paddingLeft: wp(3),
@@ -57,7 +55,7 @@ const createstyles = theme => {
     },
     ContainerStatusedit: {
       borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
+      borderColor: theme.color.modelbackscreenColor,
       flexDirection: 'row',
       width: wp(90),
       borderRadius: theme.borders.radius3,
@@ -67,32 +65,58 @@ const createstyles = theme => {
       justifyContent: 'center',
     },
     statustext: {
-      color: theme.color.inputtext,
+      color: theme.color.simpletextcolor,
       fontSize: theme.size.small,
       fontWeight: theme.family.small,
-      width: wp(72),
+      width: wp(74),
       marginLeft: wp(3),
+    },
+    icon: {
+      color: theme.color.modaliconColor,
     },
     headingtext: {
       fontSize: theme.size.small,
       fontWeight: theme.family.xlarge,
       marginLeft: wp(6),
       marginTop: hp(2),
-      color: 'black',
+      color: theme.color.modaliconColor,
       width: wp(90),
     },
     Bariconcolor: {
       color: theme.color.white,
     },
+    ScrollView: {
+      marginBottom: hp(9),
+    },
     MaincontainerBtn: {
+      flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      marginTop: hp(10),
+      alignItems: 'flex-end',
+      marginBottom: hp(5),
     },
     containerBtn: {
       alignItems: 'center',
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.borderColor,
+      width: wp(40),
+
+      height: hp(7),
+      justifyContent: 'center',
+    },
+    containerBtnEdit: {
+      alignItems: 'center',
+      borderRadius: theme.borders.radius3,
+      backgroundColor: theme.color.borderColor,
+      width: wp(90),
+
+      height: hp(7),
+      justifyContent: 'center',
+    },
+    containerBtnDel: {
+      alignItems: 'center',
+      borderRadius: theme.borders.radius3,
+      backgroundColor: theme.color.logoutTextColor,
       width: wp(40),
 
       height: hp(7),

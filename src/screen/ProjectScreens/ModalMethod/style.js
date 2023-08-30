@@ -16,20 +16,20 @@ import {
         justifyContent: 'center',
       },
       modalstyle: {
-        height: wp(80),
+        height: wp(100),
         backgroundColor: theme.color.modalBackground,
         borderRadius: theme.borders.radius3,
-        width: wp(60),
+        width: wp(90),
         alignSelf: 'center',
         justifyContent: 'space-evenly',
       },
       Containerbox: {
-        height:hp(7),
+        height: hp(7),
         borderColor: theme.color.inputtext,
         borderWidth: wp(0.5),
         marginTop: hp(2),
         justifyContent: 'center',
-        width: wp(50),
+        width: wp(80),
         alignSelf: 'center',
         borderRadius: theme.borders.radius3,
       },
@@ -39,23 +39,20 @@ import {
         color: theme.color.inputtext,
         fontWeight: theme.family.large,
       },
-  
-      Containerlogout: {
-        flex: 0.3,
-        backgroundColor: theme.color.logoutborderColor,
-        marginTop: hp(1),
+      ContainerNot: {
         justifyContent: 'center',
-     
-        alignSelf: 'center',
-        borderRadius: theme.borders.radius3,
+        alignItems: 'center',
       },
-      headinglogout: {
-        color: theme.color.white,
+      Notques: {
+        color: theme.color.borderColor,
+        fontSize: theme.size.medium,
+        fontWeight: theme.family.medium,
         alignSelf: 'center',
-        fontSize: theme.size.small,
-        fontWeight: theme.family.large,
+        justifyContent: 'center',
+        marginTop: hp(35),
       },
     });
     return styles;
   };
   export default createstyles;
+  

@@ -10,10 +10,9 @@ import Text from '../../../components/CustomText';
 import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
 import {Colours} from '../../../components/Colors';
-import {useDispatch, useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import SnackBar from '../../../components/Snackbar';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function Notes(props) {
   const [firebase, setfirebase] = useState([]);
   LogBox.ignoreLogs([
@@ -22,7 +21,6 @@ export default function Notes(props) {
 
   const focus = useIsFocused();
   const styles = useThemeAwareObject(createstyles);
-  const dispatch = useDispatch();
 
   const firebasedata = () => {
     firestore()
@@ -31,13 +29,10 @@ export default function Notes(props) {
       .orderBy('time', 'desc')
       .get()
       .then(querySnapshot => {
-      
         const usersArray = querySnapshot.docs.map(documentSnapshot => ({
           id: documentSnapshot.id,
           ...documentSnapshot.data(),
         }));
-      
-
         setfirebase(usersArray);
       })
       .catch(error => {
@@ -60,7 +55,14 @@ export default function Notes(props) {
     <View style={styles.Container}>
       <StatusBar backgroundColor={Colours.softblue} barStyle="light-content" />
       <View style={styles.Containerheading}>
+        <TouchableOpacity
+          style={styles.backarrow}
+          onPress={() => props.navigation.openDrawer()}>
+          <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+        </TouchableOpacity>
         <Text style={styles.heading}>Notes</Text>
+
+        <Text></Text>
       </View>
       <FlatList
         data={firebase}
@@ -72,18 +74,31 @@ export default function Notes(props) {
               onPress={() => {
                 handledata(item.note, item.status, item.id);
               }}
-              style={[
-                styles.MianContainerflat,
-                item.status == 'Urgent' && {backgroundColor: Colours.lightred},
-                item.status == "Let's_talk" && {
-                  backgroundColor: Colours.green,
-                },
-                item.status == 'Thinking' && {
-                  backgroundColor: Colours.sky,
-                },
-              ]}>
+              style={styles.MianContainerflat}>
+              <View style={styles.ContainerStatus}>
+                <Text
+                  style={[
+                    styles.Statustext,
+                    item.status == 'Urgent' && {
+                      backgroundColor: Colours.lightred,
+                    },
+                    item.status == "Let's_talk" && {
+                      backgroundColor: Colours.green,
+                    },
+                    item.status == 'Thinking' && {
+                      backgroundColor: '#FE99FF',
+                    },
+                  ]}>
+                  {item.status}
+                </Text>
+              </View>
               <View style={styles.Containerflat}>
-                <Text style={styles.flatname}>{item.note}</Text>
+                <Text
+                  numberOfLines={3}
+                  ellipsizeMode="tail"
+                  style={styles.flatname}>
+                  {item.note}
+                </Text>
               </View>
             </TouchableOpacity>
           );

@@ -11,19 +11,21 @@ const DEFAULT_LIGHT_COLOR_THEME = {
   inputtext: Colours.black,
   borderColor: Colours.softblue,
   buttonText: Colours.white,
-  boxborderColor: Colours.red,
+  logoutborderColor: Colours.red,
   logoutTextColor: Colours.red,
   headingTextborder: Colours.green,
   headingText: Colours.white,
   modaltextColor: Colours.black,
   modalBackground: Colours.white,
-  modelbackscreenColor: Colours.sky,
-  modelbackColor:Colours.lightblack,
+  modelbackscreenColor: Colours.lightblack,
   modalbuttonBackground: Colours.lightgrey,
   modaliconColor: Colours.black,
   welbackColor: Colours.grey,
   viewbtnColor: Colours.blue,
-  backgroundinput:Colours.Wild_Sand
+  inputbackgroundcolor:Colours.softblack,
+  simpletextcolor:Colours.fadeBlack,
+  datetextcolor:Colours.fadegrey,
+  boxbackcolor:Colours.sky,
 };
 
 const FONT_SET = {

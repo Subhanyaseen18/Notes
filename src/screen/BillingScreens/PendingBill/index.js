@@ -7,6 +7,7 @@ import {Colours} from '../../../components/Colors';
 import firestore from '@react-native-firebase/firestore';
 import {useIsFocused} from '@react-navigation/native';
 import SnackBar from '../../../components/Snackbar';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function PendingBill(props) {
   const styles = useThemeAwareObject(createstyles);
 
@@ -53,24 +54,47 @@ export default function PendingBill(props) {
   return (
     <View style={styles.Container}>
       <View style={styles.Containerheading}>
+        <TouchableOpacity
+          style={styles.backarrow}
+          onPress={() => props.navigation.openDrawer()}>
+          <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+        </TouchableOpacity>
         <Text style={styles.heading}>Pending Bill</Text>
+
+        <Text></Text>
       </View>
       <FlatList
         data={firebase}
         renderItem={({item, index}) => {
           return (
-            <TouchableOpacity
-              onPress={() => handledata(item)}
-              style={[
-                styles.MianContainerflat,
-                item.status == 'Pending' && {
-                  backgroundColor: Colours.lightgreen,
-                },
-              ]}>
-              <View style={styles.Containerflat}>
-                <Text style={styles.flatname}>Project: {item.project}</Text>
-              </View>
-            </TouchableOpacity>
+            <View style={styles.MianContainerflat}>
+              <TouchableOpacity
+                style={styles.Containerflatlist}
+                onPress={() => handledata(item)}>
+                <View style={styles.ContainerStatus}>
+                  <Text
+                    style={[
+                      styles.Statustext,
+                      item.status == 'Pending' && {
+                        backgroundColor: Colours.lightgreen,
+                      },
+                    ]}>
+                    {item.status}
+                  </Text>
+                </View>
+                <View style={styles.Containerflat}>
+                  <Text   numberOfLines={1}
+                    ellipsizeMode="tail" style={styles.flatname}>Project: {item.project}</Text>
+                  <Text   numberOfLines={1}
+                    ellipsizeMode="tail" style={styles.flatname}>Amount: {item.amount}</Text>
+                  <View>
+                    <Text style={styles.Datetext}>
+                      {new Date(item.date.toDate()).toDateString()}
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
           );
         }}
       />

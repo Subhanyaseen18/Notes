@@ -3,7 +3,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {Colours} from '../../../components/Colors';
+
 const createstyles = theme => {
   const styles = StyleSheet.create({
     Container: {
@@ -32,7 +32,9 @@ const createstyles = theme => {
 
       borderRadius: theme.borders.radius3,
     },
-
+    icon: {
+      color: theme.color.modaliconColor,
+    },
     notestext: {
       color: theme.color.inputtext,
       fontSize: theme.size.small,
@@ -44,7 +46,7 @@ const createstyles = theme => {
       backgroundColor: theme.color.backgroundinput,
       borderRadius: theme.borders.radius3,
       borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
+      borderColor: theme.color.modelbackscreenColor,
       color: theme.color.inputtext,
       fontWeight: theme.family.medium,
       fontSize: theme.size.small,
@@ -58,37 +60,35 @@ const createstyles = theme => {
     ContainerStatusedit: {
       marginTop: hp(1),
       borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
+      borderColor: theme.color.modelbackscreenColor,
       flexDirection: 'row',
       width: wp(90),
       borderRadius: theme.borders.radius3,
       alignSelf: 'center',
       alignItems: 'center',
       height: hp(7),
-      justifyContent: 'center',
     },
+
     Containertextinput: {
       alignSelf: 'center',
-      flexDirection: 'row',
       width: wp(90),
-      // justifyContent:'center'
+      justifyContent: 'center',
     },
     Containeredit: {
       borderWidth: wp(0.3),
-      borderColor: Colours.lightblack,
+      borderColor: theme.color.modelbackscreenColor,
       marginTop: hp(1),
       width: wp(90),
       borderRadius: theme.borders.radius3,
       alignSelf: 'center',
       flexDirection: 'row',
       height: hp(7),
-      
     },
     statustext: {
-      color: theme.color.inputtext,
+      color:  theme.color.simpletextcolor,
       fontSize: theme.size.small,
       fontWeight: theme.family.small,
-      width: wp(72),
+      width: wp(74),
       marginLeft: wp(3),
     },
     headingtext: {
@@ -113,7 +113,22 @@ const createstyles = theme => {
       borderRadius: theme.borders.radius3,
       backgroundColor: theme.color.borderColor,
       width: wp(40),
+      height: hp(7),
+      justifyContent: 'center',
+    },containerBtnEdit: {
+      alignItems: 'center',
+      borderRadius: theme.borders.radius3,
+      backgroundColor: theme.color.borderColor,
+      width: wp(90),
 
+      height: hp(7),
+      justifyContent: 'center',
+    },
+    containerBtnDel: {
+      alignItems: 'center',
+      borderRadius: theme.borders.radius3,
+      backgroundColor:theme.color.logoutTextColor,
+      width: wp(40),
       height: hp(7),
       justifyContent: 'center',
     },
@@ -130,22 +145,25 @@ const createstyles = theme => {
       marginBottom: hp(1),
     },
     textinput: {
+      width: wp(85),
       marginLeft: wp(2),
-      color: theme.color.inputtext,
+      color:  theme.color.simpletextcolor,
       fontSize: theme.size.small,
       fontWeight: theme.family.small,
-      marginTop:hp(1)
-    }, textinputicon: {
+      alignSelf: 'center',
+      marginTop: hp(1),
+    },
+    textinputicon: {
       marginLeft: wp(2),
       color: theme.color.inputtext,
       fontSize: theme.size.small,
       fontWeight: theme.family.small,
       width: wp(68),
-      borderWidth:1
+      borderWidth: 1,
     },
     plusicon: {
       marginTop: hp(1.5),
-      marginLeft:wp(2)
+      marginLeft: wp(2),
     },
     eror: {
       marginLeft: wp(6),

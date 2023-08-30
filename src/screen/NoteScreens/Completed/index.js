@@ -4,17 +4,14 @@ import Text from '../../../components/CustomText';
 import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
 import {Colours} from '../../../components/Colors';
-import {useSelector, useDispatch} from 'react-redux';
-import {Detail} from '../../../Redux/Slice';
 import firestore from '@react-native-firebase/firestore';
 import {useIsFocused} from '@react-navigation/native';
 import SnackBar from '../../../components/Snackbar';
+import Icons from 'react-native-vector-icons/Ionicons';
 export default function Complete(props) {
   const styles = useThemeAwareObject(createstyles);
-  const {user} = useSelector(state => state.user);
   const [firebase, setfirebase] = useState([]);
 
-  const dispatch = useDispatch();
   const focus = useIsFocused();
   const firebasedata = () => {
     firestore()
@@ -49,22 +46,42 @@ export default function Complete(props) {
   return (
     <View style={styles.Container}>
       <View style={styles.Containerheading}>
+        <TouchableOpacity
+          style={styles.backarrow}
+          onPress={() => props.navigation.openDrawer()}>
+          <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+        </TouchableOpacity>
         <Text style={styles.heading}>Complete Notes</Text>
+
+        <Text></Text>
       </View>
       <FlatList
         data={firebase}
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity
-              onPress={() => handledata(item.note, item.status, item.id)}
-              style={[
-                styles.MianContainerflat,
-                item.status == 'Completed' && {
-                  backgroundColor: Colours.lightgreen,
-                },
-              ]}>
+              onPress={() => {
+                handledata(item.note, item.status, item.id);
+              }}
+              style={styles.MianContainerflat}>
+              <View style={styles.ContainerStatus}>
+                <Text
+                  style={[
+                    styles.Statustext,
+                    item.status == 'Completed' && {
+                      backgroundColor: Colours.lightgreen,
+                    },
+                  ]}>
+                  {item.status}
+                </Text>
+              </View>
               <View style={styles.Containerflat}>
-                <Text style={styles.flatname}>{item.note}</Text>
+                <Text
+                  numberOfLines={3}
+                  ellipsizeMode="tail"
+                  style={styles.flatname}>
+                  {item.note}
+                </Text>
               </View>
             </TouchableOpacity>
           );

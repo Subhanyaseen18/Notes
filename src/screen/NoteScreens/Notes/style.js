@@ -10,10 +10,16 @@ const createstyles = theme => {
     },
     Containerheading: {
       height: hp(10),
+      flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
+      paddingLeft: wp(3),
+      paddingRight: wp(8),
+    },
+    Bariconcolor: {
+      color: theme.color.white,
     },
 
     heading: {
@@ -28,8 +34,9 @@ const createstyles = theme => {
       alignSelf: 'center',
       marginTop: hp(2),
       width: wp(90),
-      height: wp(20),
+      height: wp(25),
       borderRadius: theme.borders.radius3,
+      backgroundColor: theme.color.boxbackcolor,
     },
     Containerflat: {
       flexDirection: 'row',
@@ -37,14 +44,25 @@ const createstyles = theme => {
       alignItems: 'center',
       width: wp(80),
       alignSelf: 'center',
+      marginTop: hp(-2.5),
     },
     flatname: {
       color: theme.color.inputtext,
       fontSize: theme.size.small,
-      fontWeight: theme.family.xlarge,
-      width: wp(85),
-      paddingBottom: hp(1.5),
-      paddingTop: hp(1.5),
+      fontWeight: theme.family.medium,
+      width: wp(65),
+      height: hp(9),
+      marginBottom: hp(1),
+    },
+    ContainerStatus: {
+      marginRight: wp(2),
+      marginTop: hp(1),
+    },
+    Statustext: {
+      alignSelf: 'flex-end',
+      borderRadius: theme.borders.radius3,
+      padding: 7,
+      fontSize: theme.size.xSmall,
     },
   });
   return styles;
