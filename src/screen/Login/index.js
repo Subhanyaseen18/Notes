@@ -20,7 +20,6 @@ export default function Login(props) {
   const focus = useIsFocused();
   const styles = useThemeAwareObject(createstyles);
   const [value, setValue] = useState('');
-  const [loading, setloading] = useState(false);
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [proops, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -28,21 +27,26 @@ export default function Login(props) {
   });
 
   const firebasedata = () => {
-    setloading(true);
-    firestore()
-      .collection('authentication')
-      .get()
-      .then(querySnapshot => {
-        const usersArray = querySnapshot.docs.map(documentSnapshot => ({
-          id: documentSnapshot.id,
-          ...documentSnapshot.data(),
-        }));
-        if (usersArray[0].password == value) {
-          props.navigation.navigate('MyDrawer');
-        } else {
-          SnackBar('Incorrect pasword', true, 'short');
-        }
-      });
+    if (value.length == 6) {
+      
+      firestore()
+        .collection('authentication')
+        .get()
+        .then(querySnapshot => {
+          const usersArray = querySnapshot.docs.map(documentSnapshot => ({
+            id: documentSnapshot.id,
+            ...documentSnapshot.data(),
+          }));
+          if (usersArray[0].password == value) {
+            props.navigation.navigate('MyDrawer');
+            setValue('');
+          } else {
+            SnackBar('Incorrect pasword', true, 'short');
+          }
+        });
+    } else {
+      SnackBar('Please enter complete password!', true, 'short');
+    }
   };
 
   return (

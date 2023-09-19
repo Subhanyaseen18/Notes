@@ -1,21 +1,22 @@
 import {View, FlatList, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import Text from '../../components/CustomText';
-import {useThemeAwareObject} from '../../theme/theme';
+import Text from '../../../components/CustomText';
+import {useThemeAwareObject} from '../../../theme/theme';
 import createstyles from './style';
-import {Colours} from '../../components/Colors';
+import {Colours} from '../../../components/Colors';
 import firestore from '@react-native-firebase/firestore';
 import {useIsFocused} from '@react-navigation/native';
-import SnackBar from '../../components/Snackbar';
+import SnackBar from '../../../components/Snackbar';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import Icons from 'react-native-vector-icons/Ionicons';
+import Icons from 'react-native-vector-icons/AntDesign';
 export default function PaymentMethod(props) {
   const styles = useThemeAwareObject(createstyles);
 
   const focus = useIsFocused();
 
   const handledata = values => {
+    props.navigation.navigate('Payment');
     firestore()
       .collection('payment')
       .add({
@@ -23,7 +24,7 @@ export default function PaymentMethod(props) {
       })
       .then(() => {
         SnackBar('Payment added!', true, 'short');
-        props.navigation.goBack();
+       
       });
   };
 
@@ -51,12 +52,12 @@ export default function PaymentMethod(props) {
       }) => (
         <View style={styles.Container}>
          <View style={styles.Containerheading}>
-        <TouchableOpacity
+         <TouchableOpacity
           style={styles.backarrow}
-          onPress={() => props.navigation.openDrawer()}>
-          <Icons name="menu-sharp" size={35} style={styles.Bariconcolor} />
+          onPress={() => props.navigation.goBack()}>
+          <Icons name="leftcircle" size={35} style={styles.Bariconcolor} />
         </TouchableOpacity>
-        <Text style={styles.heading}>Payment Method</Text>
+        <Text style={styles.heading}>Add Method</Text>
 
         <Text></Text>
       </View>

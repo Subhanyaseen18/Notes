@@ -98,6 +98,7 @@ export default function PendingBill(props) {
             </View>
           );
         }}
+        contentContainerStyle={{ paddingBottom: 15 }}
       />
     </View>
   );

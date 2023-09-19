@@ -44,13 +44,11 @@ const createstyles = theme => {
       alignItems: 'center',
     },
     Notques: {
-      color: theme.color.borderColor,
+      color: theme.color.inputtext,
       fontSize: theme.size.medium,
       fontWeight: theme.family.medium,
       alignSelf: 'center',
-      justifyContent: 'center',
-      marginTop: hp(35),
-    },
+    }
   });
   return styles;
 };

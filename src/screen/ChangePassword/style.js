@@ -8,15 +8,25 @@ const createstyles = theme => {
     Container: {
       flex: 1,
     },
-    Containerlogo: {
-      marginTop: hp(5),
-    },
-    logoimg: {
-      height: wp(60),
-      width: wp(60),
-      borderRadius: 150,
-      alignSelf: 'center',
+    Containerheading: {
+      height: hp(10),
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
+      paddingLeft: wp(3),
+      paddingRight: wp(3),
+    },
+
+    heading: {
+      alignSelf: 'center',
+      fontSize: theme.size.xlarge,
+      fontWeight: theme.family.xlarge,
+      color: theme.color.white,
+    },
+    backarrow: {
+      marginTop: hp(1),
     },
     Containercode: {
       width: wp(90),
@@ -26,11 +36,14 @@ const createstyles = theme => {
       alignSelf: 'center',
       fontSize: theme.size.xlarge,
       fontWeight: theme.family.xlarge,
-      color: theme.color.borderColor,
+      color: theme.color.white,
+    },
+    Bariconcolor: {
+      color: theme.color.white,
     },
 
     codeFieldRoot: {
-      marginTop: wp(7),
+      marginTop: wp(3),
     },
     cell: {
       color: theme.color.inputtext,
@@ -41,7 +54,7 @@ const createstyles = theme => {
       borderWidth: 2,
       borderColor: theme.color.borderColor,
       textAlign: 'center',
-      borderRadius:0
+      borderRadius: 0,
     },
     focusCell: {
       borderColor: theme.color.input,
@@ -68,7 +81,14 @@ const createstyles = theme => {
       fontSize: theme.size.small,
       color: theme.color.inputtext,
       fontWeight: theme.family.medium,
-      marginTop:hp(1)
+      marginTop: hp(1),
+    },
+    headingnew: {
+      fontSize: theme.size.small,
+      color: theme.color.inputtext,
+      fontWeight: theme.family.medium,
+      marginLeft: wp(4),
+      marginTop: wp(10),
     },
   });
   return styles;

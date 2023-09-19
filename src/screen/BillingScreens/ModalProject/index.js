@@ -64,6 +64,7 @@ const ModalProjname = ({visible, onClose, ItemSelected}) => {
                   </TouchableOpacity>
                 );
               }}
+              contentContainerStyle={{ paddingBottom: 15 }}
             />
           </View>
         </TouchableOpacity>

@@ -15,8 +15,8 @@ const createstyles = theme => {
       justifyContent: 'space-between',
       backgroundColor: theme.color.borderColor,
       marginBottom: hp(2),
-      paddingLeft: wp(3),
-      paddingRight: wp(8),
+      paddingLeft: wp(5),
+      paddingRight: wp(10),
     },
     Bariconcolor: {
       color: theme.color.white,

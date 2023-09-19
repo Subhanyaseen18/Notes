@@ -64,7 +64,9 @@ export default function Notes(props) {
 
         <Text></Text>
       </View>
+
       <FlatList
+     
        showsVerticalScrollIndicator={false}
         data={firebase}
         keyExtractor={item => item.id}
@@ -103,6 +105,7 @@ export default function Notes(props) {
             </TouchableOpacity>
           );
         }}
+        contentContainerStyle={{ paddingBottom: 15 }}
       />
     </View>
   );

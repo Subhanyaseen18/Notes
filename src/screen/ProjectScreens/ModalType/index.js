@@ -42,6 +42,7 @@ const ModalType = ({open, Close, ItemSelect}) => {
                   </TouchableOpacity>
                 );
               }}
+              contentContainerStyle={{ paddingBottom: 15 }}
             />
           </View>
         </TouchableOpacity>

@@ -30,7 +30,7 @@ export default function DetailBilling(props) {
   const [modalmile, setmodalmile] = useState(false);
   const [modelstatus, setmodelstatus] = useState(false);
   const [milestones, setmilestones] = useState('Select the milestone');
-  const [DEldone, setDEldone] = useState(false)
+  const [DEldone, setDEldone] = useState(false);
   const handlemileSelected = item => {
     setmilestone(item);
   };
@@ -40,34 +40,38 @@ export default function DetailBilling(props) {
   const handleItemSelected = item => {
     setproject(item.projectname);
     setmethod(item.paymentmethod);
+    setmilestone('Select the milestone');
   };
   const handledata = values => {
     const currentTimestamp = firestore.Timestamp.fromDate(date);
 
     {
-      editable == false
-        ? props.navigation.goBack()
-        : firestore()
-            .collection('billing')
-            .doc(props.route.params.id)
-            .update({
-              project: project,
-              method: method,
-              date: currentTimestamp,
-              status: status,
-              milestone: milestone,
-              amount: values.Amount,
-            })
-            .then(() => {
-              SnackBar('Project updated!', true, 'short');
-              seteditable(false);
-            });
+      editable == false && props.navigation.goBack();
+    }
+    if (milestone !== 'Select the milestone') {
+      firestore()
+        .collection('billing')
+        .doc(props.route.params.id)
+        .update({
+          project: project,
+          method: method,
+          date: currentTimestamp,
+          status: status,
+          milestone: milestone,
+          amount: values.Amount,
+        })
+        .then(() => {
+          SnackBar('Project updated!', true, 'short');
+          seteditable(false);
+        });
+    }else{
+      SnackBar('Please select milestone!', true, 'short');
     }
   };
 
   const handledelete = () => {
     props.navigation.goBack();
-    setDEldone(false)
+    setDEldone(false);
     firestore()
       .collection('billing')
       .doc(props.route.params.id)
@@ -233,9 +237,11 @@ export default function DetailBilling(props) {
                 </TouchableOpacity>
               )}
               <TouchableOpacity
-               style={[
-                editable == false ? styles.containerBtn : styles.containerBtnEdit,
-              ]}
+                style={[
+                  editable == false
+                    ? styles.containerBtn
+                    : styles.containerBtnEdit,
+                ]}
                 onPress={() => handleSubmit()}>
                 <Text style={styles.btntext}>Done</Text>
               </TouchableOpacity>
@@ -256,9 +262,9 @@ export default function DetailBilling(props) {
               Close={() => setmodelstatus(false)}
             />
             <DelModal
-             visible={DEldone}
-             ItemSelected={handledelete}
-             onClose={() => setDEldone(false)}
+              visible={DEldone}
+              ItemSelected={handledelete}
+              onClose={() => setDEldone(false)}
             />
 
             <DatePicker

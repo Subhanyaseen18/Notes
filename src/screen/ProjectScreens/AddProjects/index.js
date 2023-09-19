@@ -28,7 +28,7 @@ export default function AddProject(props) {
     setstatus(item);
   };
   const handleItemtype = item => {
-    settype(item);
+    settype(item); 
   };
   const handlemethodSelected = item => {
     setmethod(item);
@@ -60,7 +60,7 @@ export default function AddProject(props) {
           }
           setstatus('Paused');
           settype('Job');
-          setmethod('Select the payment method')
+          setmethod('Select the payment method');
         });
     } else {
       SnackBar('Please added complete data', true, 'short');
@@ -71,7 +71,6 @@ export default function AddProject(props) {
     clientname: yup.string().required('Please enter clientname'),
     clienttime: yup.string().required('Please enter  clienttime'),
     country: yup.string().required('Please enter country'),
-
     notes: yup.string().required('Please enter notes'),
     by: yup.string().required('Please enter your name'),
   });
@@ -120,7 +119,7 @@ export default function AddProject(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{status}</Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Icon name="expand-more" size={40} style={styles.icon}/>
+                <Icon name="expand-more" size={40} style={styles.icon} />
               </TouchableOpacity>
             </View>
 
@@ -180,7 +179,7 @@ export default function AddProject(props) {
             <View style={styles.ContainerDate}>
               <Text style={styles.Datetext}> {date.toDateString()}</Text>
               <TouchableOpacity onPress={() => setOpen(true)}>
-                <Icon name="expand-more" size={40} style={styles.icon}/>
+                <Icon name="expand-more" size={40} style={styles.icon} />
               </TouchableOpacity>
             </View>
 
@@ -241,7 +240,7 @@ export default function AddProject(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{type}</Text>
               <TouchableOpacity onPress={() => setmodaltype(true)}>
-                <Icon name="expand-more" size={40} style={styles.icon}/>
+                <Icon name="expand-more" size={40} style={styles.icon} />
               </TouchableOpacity>
             </View>
             <View style={styles.Containerheadingname}>
@@ -296,11 +295,10 @@ export default function AddProject(props) {
             <View style={styles.ContainerStatusedit}>
               <Text style={styles.notestext}>{method}</Text>
               <TouchableOpacity onPress={() => setmodalmethod(true)}>
-                <Icon name="expand-more" size={40} style={styles.icon}/>
+                <Icon name="expand-more" size={40} style={styles.icon} />
               </TouchableOpacity>
             </View>
             <View style={styles.MaincontainerBtn}>
-             
               <TouchableOpacity
                 onPress={() => {
                   handleSubmit();

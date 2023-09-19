@@ -322,6 +322,7 @@ export default function DetailProject(props) {
                 },
               ]}>
               <TextInput
+              multiline={ editable == false?true:false}
                 editable={editable}
                 onChangeText={handleChange('notes')}
                 onBlur={handleBlur('notes')}

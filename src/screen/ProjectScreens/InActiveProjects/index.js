@@ -126,6 +126,7 @@ export default function InActive(props) {
             </View>
           );
         }}
+        contentContainerStyle={{ paddingBottom: 15 }}
       />
     </View>
   );

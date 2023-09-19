@@ -29,7 +29,7 @@ const ModalMile = ({visibles, onCloses, ItemSelect}) => {
       .then(documentSnapshot => {
         if (documentSnapshot.exists) {
           const dataObject = documentSnapshot.data().milestone;
-          setfirebase(dataObject);
+      setfirebase(dataObject);
         }
       });
   };
@@ -44,24 +44,27 @@ const ModalMile = ({visibles, onCloses, ItemSelect}) => {
           style={styles.modalstylebackground}
           onPress={() => onCloses()}>
           <View style={styles.modalstyle}>
-            {firebase == 'undefined' && (
+            {firebase?.length==0||firebase == undefined ?(
               <View state={styles.ContainerNot}>
                 <Text style={styles.Notques}>No Milestone added</Text>
               </View>
+            ):(
+              <FlatList
+              showsVerticalScrollIndicator={false}
+               data={firebase}
+               renderItem={({item, index}) => {
+                 return (
+                   <TouchableOpacity
+                     onPress={() => handleprofilescreen(item.milestone)}
+                     style={styles.Containerbox}>
+                     <Text style={styles.headingtext}>{item.milestone}</Text>
+                   </TouchableOpacity>
+                 );
+               }}
+               contentContainerStyle={{ paddingBottom: 15 }}
+             />
             )}
-            <FlatList
-             showsVerticalScrollIndicator={false}
-              data={firebase}
-              renderItem={({item, index}) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => handleprofilescreen(item.milestone)}
-                    style={styles.Containerbox}>
-                    <Text style={styles.headingtext}>{item.milestone}</Text>
-                  </TouchableOpacity>
-                );
-              }}
-            />
+           
           </View>
         </TouchableOpacity>
       </Modal>

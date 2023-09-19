@@ -53,7 +53,7 @@ const createstyles = theme => {
       height: wp(25),
       borderRadius: theme.borders.radius3,
       justifyContent: 'space-evenly',
-      backgroundColor:theme.color.boxbackcolor,
+      backgroundColor: theme.color.boxbackcolor,
     },
     Containerflat: {
       marginTop: hp(-5),
@@ -68,7 +68,6 @@ const createstyles = theme => {
     },
     ContainerStatus: {
       marginRight: wp(2),
-     
     },
     Statustext: {
       alignSelf: 'flex-end',
@@ -79,7 +78,7 @@ const createstyles = theme => {
     Datetext: {
       alignSelf: 'flex-end',
       fontSize: theme.size.xSmall,
-      marginRight: wp(2),
+      marginRight: wp(3),
       color: theme.color.datetextcolor,
     },
   });

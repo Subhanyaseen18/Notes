@@ -14,13 +14,15 @@ import Icons from 'react-native-vector-icons/Entypo';
 import Ion from 'react-native-vector-icons/Ionicons';
 import {Colours} from '../components/Colors';
 import ProjectBottomStack from './Projectnavigation';
-import PaymentMethod from '../screen/PaymentMethod';
+import PaymentMethod from '../screen/PaymentMethod/AddMethod';
 import DetailProject from '../screen/ProjectScreens/ProjectDetail';
 import Billnavigation from './Billnavigation';
 import DetailBilling from '../screen/BillingScreens/DetailBilling';
 import AllDetail from '../screen/ProjectScreens/AllDetail';
 import createstyles from './style';
 import {useThemeAwareObject} from '../theme/theme';
+import Methods from '../screen/PaymentMethod/Methods';
+import ChangePassword from '../screen/ChangePassword';
 const Tab = createBottomTabNavigator();
 const NoteBottomStack = () => {
   const styles = useThemeAwareObject(createstyles);
@@ -87,6 +89,7 @@ const MainStack = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
+
         <Stack.Screen name="MyDrawer" component={MyDrawer}></Stack.Screen>
         <Stack.Screen name="DetailNotes" component={DetailNotes}></Stack.Screen>
         <Stack.Screen
@@ -97,6 +100,9 @@ const MainStack = () => {
           component={DetailProject}></Stack.Screen>
 
         <Stack.Screen name="AllDetail" component={AllDetail}></Stack.Screen>
+        <Stack.Screen
+          name="PaymentMethod"
+          component={PaymentMethod}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -110,13 +116,14 @@ const MyDrawer = () => {
         headerShown: false,
         drawerActiveTintColor: Colours.softblue,
         drawerInactiveTintColor: Colours.black,
-        drawerItemStyle: {marginVertical: 8},
+        drawerItemStyle: {marginVertical: 5},
         drawerLabelStyle: {fontSize: 16},
       }}>
       <Drawer.Screen name="Notes" component={NoteBottomStack} />
+      <Drawer.Screen name="Payment" component={Methods} />
       <Drawer.Screen name="Projects" component={ProjectBottomStack} />
-      <Drawer.Screen name="Payment" component={PaymentMethod} />
       <Drawer.Screen name="Billing" component={Billnavigation} />
+      <Drawer.Screen name="Change_Password" component={ChangePassword} />
     </Drawer.Navigator>
   );
 };

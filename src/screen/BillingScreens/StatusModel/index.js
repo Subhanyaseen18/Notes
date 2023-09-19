@@ -42,6 +42,7 @@ const StatusBilling = ({open, Close, Selectedstatus}) => {
                   </TouchableOpacity>
                 );
               }}
+              contentContainerStyle={{ paddingBottom: 15 }}
             />
           </View>
         </TouchableOpacity>

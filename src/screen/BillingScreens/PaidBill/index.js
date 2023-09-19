@@ -106,6 +106,7 @@ export default function PaidBill(props) {
             </View>
           );
         }}
+        contentContainerStyle={{ paddingBottom: 15 }}
       />
     </View>
   );

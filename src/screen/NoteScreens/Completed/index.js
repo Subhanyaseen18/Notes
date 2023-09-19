@@ -87,6 +87,7 @@ export default function Complete(props) {
             </TouchableOpacity>
           );
         }}
+        contentContainerStyle={{ paddingBottom: 15 }}
       />
     </View>
   );
